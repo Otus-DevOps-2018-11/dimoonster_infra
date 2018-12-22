@@ -1,0 +1,7 @@
+Host gcp-bastion
+    Hostname 35.207.87.178
+    User moon
+    IdentityFile ~/.ssh/gcp_infra
+
+Host eu-w3-a-node01
+    ProxyCommand ssh -q gcp-bastion nc -q0 eu-w3-a-node01 22

@@ -3,6 +3,8 @@ dimoonster Infra repository
 
 # Домашнее задание 4 (Основные сервисы Google Cloud Platform (GCP).) 
 
+Параметры для прохождения тестов
+
 ```sh
 testapp_IP = 35.246.128.233
 testapp_port = 9292

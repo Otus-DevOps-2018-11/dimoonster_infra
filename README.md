@@ -1,6 +1,25 @@
 # dimoonster_infra
 dimoonster Infra repository
 
+# Домашнее задание 4 (Основные сервисы Google Cloud Platform (GCP).) 
+
+```sh
+testapp_IP = 35.246.128.233
+testapp_port = 9292
+```
+
+## Дополнительное задание 2:
+
+При создании VM присвоил tag ul-srv1
+
+```sh
+$ gcloud compute firewall-rules create reddit-app --allow=tcp:9292 --direction=INGRESS --target-tags=ul-srv1
+Creating firewall...⠏Created [https://www.googleapis.com/compute/v1/projects/clean-algebra-226316/global/firewalls/reddit-app].                                                               
+Creating firewall...done.                                                                                                                                                                     
+NAME        NETWORK  DIRECTION  PRIORITY  ALLOW     DENY  DISABLED
+reddit-app  default  INGRESS    1000      tcp:9292        False
+```
+
 
 # Поднятые тестовые машины в GCP
 | Hostname | Назначение | IP int (ext) |

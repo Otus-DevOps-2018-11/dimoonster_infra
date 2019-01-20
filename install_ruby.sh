@@ -10,4 +10,4 @@ fi
 
 ## Обновим репозитории и установим ruby, bundler и инструменты для сборки
 apt-get update
-apt-get install install -y ruby-full ruby-bundler build-essential
+apt-get install -y ruby-full ruby-bundler build-essential

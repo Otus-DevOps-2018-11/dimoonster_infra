@@ -1,6 +1,10 @@
 # dimoonster_infra
 dimoonster Infra repository
 
+# ДЗ из Лекции 4
+
+Базовая интеграция с TravisCI и проверка работспособности, а также получение результат работы в slack
+
 # Домашнее задание 4 (Основные сервисы Google Cloud Platform (GCP).) 
 
 Параметры для прохождения тестов

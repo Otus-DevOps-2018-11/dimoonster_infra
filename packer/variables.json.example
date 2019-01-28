@@ -1,0 +1,6 @@
+{
+    "project_id": "doktor_zlo",
+    "source_image_family": "windows_from_scratch",
+    "ssh_user": "application ssh user name",
+    "tags": "server_tag_1"
+}

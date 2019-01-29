@@ -14,12 +14,11 @@ provider "google" {
 # }
 
 resource "google_compute_instance" "app" {
-  count = "${var.inst_count}"
+  count        = "${var.inst_count}"
   name         = "${var.vm_name}-node-${count.index}"
   machine_type = "g1-small"
   zone         = "${local.vm_zone}"
   tags         = ["reddit-app"]
-
 
   # загрузочный диск
   boot_disk {
@@ -36,7 +35,7 @@ resource "google_compute_instance" "app" {
 
   # метаданные
   metadata {
-    ssh-keys = "appuser:${file(var.public_key_path)}"
+    ssh-keys               = "appuser:${file(var.public_key_path)}"
     block-project-ssh-keys = false
   }
 

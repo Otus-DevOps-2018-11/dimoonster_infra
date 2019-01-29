@@ -34,6 +34,6 @@ variable "vm_name" {
 }
 
 variable "inst_count" {
-    description = "Instances count"
-    default = "2"
+  description = "Instances count"
+  default     = "2"
 }

@@ -1,6 +1,48 @@
 # dimoonster_infra
 dimoonster Infra repository
 
+# ДЗ 6 (terraform 1)
+
+Сильная нуедобность, нельзя в dafult значении переменной использовать значение другой переменной, даже если у той есть своё значение по умолчанию:
+```sh
+variable "vm_zone" {
+  description = "Zone to start vm"
+  default = "${var.region}-1"
+}
+```
+выдаёт ошибку:
+```sh
+Error: variable "vm_zone": default may not contain interpolations
+```
+
+Идея была такая - если зона не указана, то создавать её будем автоматически, основываясь на название региона. Реализовать идею помогла документация https://www.terraform.io/docs/configuration/locals.html 
+
+Если есть ключи в проекте, то при выполнении получаю ошибку:
+```sh
+* google_compute_project_metadata.ssh_keys: 1 error(s) occurred:
+
+* google_compute_project_metadata.ssh_keys: Error, key 'ssh-keys' already exists in project
+```
+А также словил ошибку, что тераформ не зафиксировал у себя, что он создал VM и при попытке запустить apply выдал
+```sh
+1 error(s) occurred:
+
+* google_compute_instance.app[1]: 1 error(s) occurred:
+
+* google_compute_instance.app.1: Error creating instance: googleapi: Error 409: The resource 'projects/clean-algebra-226316/zones/europe-west3-a/instances/reddit-tf-app-var' already exists, alreadyExists
+
+Terraform does not automatically rollback in the face of errors.
+Instead, your Terraform state file has been partially updated with
+any resources that successfully completed. Please address the error
+above and apply again to incrementally change your infrastructure.
+```
+
+При введении параметра count изменились переменные
+
+
+
+
+
 # ДЗ из Лекции 4
 
 Базовая интеграция с TravisCI и проверка работспособности, а также получение результат работы в slack

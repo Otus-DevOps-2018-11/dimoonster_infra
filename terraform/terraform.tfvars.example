@@ -1,0 +1,5 @@
+project = "terraform.tfvars"
+public_key_path = "~/.ssh/<public key file>"
+private_key_path = "~./ssh/<private key file>"
+disk_image = "<disk_image_name>"
+vm_name = "<vm_name>"

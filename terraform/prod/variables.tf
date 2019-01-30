@@ -35,11 +35,11 @@ variable "inst_count" {
 }
 
 variable "app_disk_image" {
-    description = "Disk image for application"
-    default = "reddit-app"
+  description = "Disk image for application"
+  default     = "reddit-app"
 }
 
 variable "db_disk_image" {
   description = "Disk image for application db"
-  default = "reddit-db"
+  default     = "reddit-db"
 }

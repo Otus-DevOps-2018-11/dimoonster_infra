@@ -20,7 +20,8 @@ resource "google_compute_instance" "app" {
 
   # сеть
   network_interface {
-    network       = "default"
+    network = "default"
+
     access_config = {
       nat_ip = "${google_compute_address.app_ip.address}"
     }
@@ -32,21 +33,21 @@ resource "google_compute_instance" "app" {
     block-project-ssh-keys = false
   }
 
-#   connection {
-#     type        = "ssh"
-#     user        = "appuser"
-#     agent       = "false"
-#     private_key = "${file(var.private_key_path)}"
-#   }
+  #   connection {
+  #     type        = "ssh"
+  #     user        = "appuser"
+  #     agent       = "false"
+  #     private_key = "${file(var.private_key_path)}"
+  #   }
 
-#   provisioner "file" {
-#     source      = "files/reddit.service"
-#     destination = "/tmp/reddit.service"
-#   }
+  #   provisioner "file" {
+  #     source      = "files/reddit.service"
+  #     destination = "/tmp/reddit.service"
+  #   }
 
-#   provisioner "remote-exec" {
-#     script = "files/deploy.sh"
-#   }
+  #   provisioner "remote-exec" {
+  #     script = "files/deploy.sh"
+  #   }
 }
 
 resource "google_compute_firewall" "firewall_reddit_app" {

@@ -28,5 +28,5 @@ variable "inst_count" {
 
 variable "db_disk_image" {
   description = "Disk image for application db"
-  default = "reddit-db"
+  default     = "reddit-db"
 }

@@ -9,7 +9,7 @@ module "storage-bucket" {
   version = "0.1.1"
 
   # Имена поменяйте на другие
-  name = ["storage-bucket-rain", "storage-bucket-winter"]
+  name = ["storage-bucket-rain"]
 }
 
 output storage-bucket_url {

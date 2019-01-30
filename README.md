@@ -9,6 +9,13 @@ dimoonster Infra repository
   reddit-app - образ с руби
   reddit-db  - образ с mongo
 
+storage-buckets:
+```sh
+$ gsutil ls
+gs://storage-bucket-rain/
+gs://storage-bucket-winter/
+```
+
 # ДЗ 6 (terraform 1)
 
 Сильная нуедобность, нельзя в dafult значении переменной использовать значение другой переменной, даже если у той есть своё значение по умолчанию:

@@ -16,7 +16,7 @@ gs://storage-bucket-rain/
 gs://storage-bucket-winter/
 ```
 
-## Задание *
+### Задание *
 
 в backend.tf описываем, что хранить состояние мы будем в gcs
 
@@ -44,6 +44,13 @@ again. For most commands, you can disable locking with the "-lock=false"
 flag, but this is not recommended.
 
 ```
+
+### Задание 2*
+- Скрипты и необходимые файлы скопированы в каталоги соответсвующих модулей
+- в модуль app добавлена переменная *db_ip_addr* в которую небходимо передавать ip адрес сервера БД
+- в модуль db добавлен shell скрипт, который меняет значение ip адреса на котором должен работать mongodb
+- выходной параметр модуля db internal_ip передаётся в качестве параметра db_ip_addr в модуль app
+- в скрипт deploy.sh модуля app db_ip_addr передаётся как переменная окружения. скрипт меняет значение enviroment DATABASE_URL для сервиса reddit.service на переданное значение
 
 
 # ДЗ 6 (terraform 1)

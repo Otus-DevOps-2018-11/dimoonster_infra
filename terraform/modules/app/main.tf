@@ -33,21 +33,29 @@ resource "google_compute_instance" "app" {
     block-project-ssh-keys = false
   }
 
-  #   connection {
-  #     type        = "ssh"
-  #     user        = "appuser"
-  #     agent       = "false"
-  #     private_key = "${file(var.private_key_path)}"
-  #   }
+     connection {
+       type        = "ssh"
+       user        = "appuser"
+       agent       = "false"
+       private_key = "${file(var.private_key_path)}"
+     }
 
-  #   provisioner "file" {
-  #     source      = "files/reddit.service"
-  #     destination = "/tmp/reddit.service"
-  #   }
+     provisioner "file" {
+       source      = "../modules/app/files/reddit.service"
+       destination = "/tmp/reddit.service"
+     }
 
-  #   provisioner "remote-exec" {
-  #     script = "files/deploy.sh"
-  #   }
+     provisioner "file" {
+         source = "../modules/app/files/deploy.sh"
+         destination = "/tmp/deploy.sh"
+     }
+
+     provisioner "remote-exec" {
+         inline = [
+             "chmod +x /tmp/deploy.sh",
+             "IP=${var.db_ip_addr} /tmp/deploy.sh"
+         ]
+     }
 }
 
 resource "google_compute_firewall" "firewall_reddit_app" {

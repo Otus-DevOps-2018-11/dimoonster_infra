@@ -30,3 +30,12 @@ variable "app_disk_image" {
   description = "Disk image for application"
   default     = "reddit-app"
 }
+
+variable "private_key_path" {
+  description = "Path to the private key used by provisioners"
+}
+
+variable "db_ip_addr" {
+  description = "mongodb server ip addr"
+}
+

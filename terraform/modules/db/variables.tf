@@ -30,3 +30,7 @@ variable "db_disk_image" {
   description = "Disk image for application db"
   default     = "reddit-db"
 }
+
+variable "private_key_path" {
+  description = "Path to the private key used by provisioners"
+}

@@ -5,7 +5,7 @@ MYID=`id -u`
 if test "${MYID}" != '0' ; then
     echo Need root access. 
     echo Run $0 use sudo.
-    exit
+    exit 1
 fi
 
 USER=appuser

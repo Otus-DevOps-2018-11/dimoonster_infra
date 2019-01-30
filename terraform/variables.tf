@@ -35,5 +35,15 @@ variable "vm_name" {
 
 variable "inst_count" {
   description = "Instances count"
-  default     = "2"
+  default     = "1"
+}
+
+variable "app_disk_image" {
+    description = "Disk image for application"
+    default = "reddit-app"
+}
+
+variable "db_disk_image" {
+  description = "Disk image for application db"
+  default = "reddit-db"
 }

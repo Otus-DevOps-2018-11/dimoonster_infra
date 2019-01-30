@@ -38,4 +38,3 @@ variable "private_key_path" {
 variable "db_ip_addr" {
   description = "mongodb server ip addr"
 }
-

@@ -9,3 +9,4 @@ output "db_external_ip" {
 # output "app-lb-ip" {
 #   value = "${google_compute_forwarding_rule.http.ip_address}"
 # }
+

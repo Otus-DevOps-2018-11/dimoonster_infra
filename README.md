@@ -1,6 +1,58 @@
 # dimoonster_infra
 dimoonster Infra repository
 
+# ДЗ 7 (terraform 2)
+Из замеченных приколов: 
+ * не удалось создать образы, при выполненом terraform destroy, т.к. правило разрешающее ssh было им прибито
+
+созданы образы
+  reddit-app - образ с руби
+  reddit-db  - образ с mongo
+
+storage-buckets:
+```sh
+$ gsutil ls
+gs://storage-bucket-rain/
+gs://storage-bucket-winter/
+```
+
+### Задание *
+
+в backend.tf описываем, что хранить состояние мы будем в gcs
+
+при запуске terraform init в чистом состоянии файл terraform.tfstate не создаётся, при запуске в работающей среде появляется предложение о переносе файла terraform.tfstate в gcs
+
+при одновременном запуске из другого католога получем ошибку о блокировке
+```sh
+$ terraform plan
+Acquiring state lock. This may take a few moments...
+
+Error: Error locking state: Error acquiring the state lock: writing "gs://storage-bucket-rain/prod/default.tflock" failed: googleapi: Error 412: Precondition Failed, conditionNotMet
+Lock Info:
+  ID:        1548880641499146
+  Path:      gs://storage-bucket-rain/prod/default.tflock
+  Operation: OperationTypeApply
+  Who:       moon@leniva
+  Version:   0.11.11
+  Created:   2019-01-30 20:37:21.198605855 +0000 UTC
+  Info:      
+
+
+Terraform acquires a state lock to protect the state from being written
+by multiple users at the same time. Please resolve the issue above and try
+again. For most commands, you can disable locking with the "-lock=false"
+flag, but this is not recommended.
+
+```
+
+### Задание 2*
+- Скрипты и необходимые файлы скопированы в каталоги соответсвующих модулей
+- в модуль app добавлена переменная *db_ip_addr* в которую небходимо передавать ip адрес сервера БД
+- в модуль db добавлен shell скрипт, который меняет значение ip адреса на котором должен работать mongodb
+- выходной параметр модуля db internal_ip передаётся в качестве параметра db_ip_addr в модуль app
+- в скрипт deploy.sh модуля app db_ip_addr передаётся как переменная окружения. скрипт меняет значение enviroment DATABASE_URL для сервиса reddit.service на переданное значение
+
+
 # ДЗ 6 (terraform 1)
 
 Сильная нуедобность, нельзя в dafult значении переменной использовать значение другой переменной, даже если у той есть своё значение по умолчанию:

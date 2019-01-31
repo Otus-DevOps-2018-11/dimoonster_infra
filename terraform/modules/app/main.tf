@@ -1,36 +1,30 @@
-provider "google" {
-  version = "1.4.0"
-  project = "${var.project}"
-  region  = "${var.region}"
+resource "google_compute_address" "app_ip" {
+  name = "reddit-app-ip"
 }
-
-# resource "google_compute_project_metadata" "ssh_keys" {
-#   metadata {
-#     ssh-keys = <<EOF
-#     appuser1:${file(var.public_key_path)}
-#     appuser2:${file(var.public_key_path)}
-# EOF
-#   }
-# }
 
 resource "google_compute_instance" "app" {
   count        = "${var.inst_count}"
-  name         = "${var.vm_name}-node-${count.index}"
+  name         = "${var.vm_name}-app-node-${count.index}"
   machine_type = "g1-small"
   zone         = "${local.vm_zone}"
   tags         = ["reddit-app"]
 
+  depends_on = ["google_compute_address.app_ip"]
+
   # загрузочный диск
   boot_disk {
     initialize_params {
-      image = "${var.disk_image}"
+      image = "${var.app_disk_image}"
     }
   }
 
   # сеть
   network_interface {
-    network       = "default"
-    access_config = {}
+    network = "default"
+
+    access_config = {
+      nat_ip = "${google_compute_address.app_ip.address}"
+    }
   }
 
   # метаданные
@@ -47,12 +41,20 @@ resource "google_compute_instance" "app" {
   }
 
   provisioner "file" {
-    source      = "files/reddit.service"
+    source      = "../modules/app/files/reddit.service"
     destination = "/tmp/reddit.service"
   }
 
+  provisioner "file" {
+    source      = "../modules/app/files/deploy.sh"
+    destination = "/tmp/deploy.sh"
+  }
+
   provisioner "remote-exec" {
-    script = "files/deploy.sh"
+    inline = [
+      "chmod +x /tmp/deploy.sh",
+      "IP=${var.db_ip_addr} /tmp/deploy.sh",
+    ]
   }
 }
 

@@ -1,0 +1,15 @@
+[Unit]
+Description=Reddit App
+After=network.target
+
+[Service]
+Environment="DATABASE_URL=127.0.0.1"
+User=appuser
+WorkingDirectory=/home/appuser/reddit
+ExecStart=/usr/local/bin/puma
+StandardOutput=syslog
+StandardError=syslog
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

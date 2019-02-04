@@ -1,6 +1,38 @@
 # dimoonster_infra
 dimoonster Infra repository
 
+# ДЗ 8
+
+Написал небольшой скриптик на perl, который возвращает динамически сгенерённый json для ansible
+
+скрипт переходит в каталог с инициализированным terraform, получает оттуда текущие ip адреса запущенных хостов app и db, на основании этих данных и создаёт json
+
+пример работы:
+
+ansible.cfg:
+```sh
+[defaults]
+inventory = ./appexp.pl
+remote_user = appuser
+private_key_file = ~/.ssh/id_rsa
+host_key_checking = False
+retry_files_enabled = False
+```
+вывод
+```sh
+$ ansible all -m ping
+app.host | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+mongodb.host | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+```
+
+пример сгенерённого json - файл ansible/inventory.json
+
 # ДЗ 7 (terraform 2)
 Из замеченных приколов: 
  * не удалось создать образы, при выполненом terraform destroy, т.к. правило разрешающее ssh было им прибито

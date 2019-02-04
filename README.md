@@ -33,6 +33,8 @@ mongodb.host | SUCCESS => {
 
 пример сгенерённого json - файл ansible/inventory.json
 
+т.к. тест с perl скриптом не проходит (https://travis-ci.com/Otus-DevOps-2018-11/dimoonster_infra/builds/99676750) то в закомиченном конфиге указан ini
+
 # ДЗ 7 (terraform 2)
 Из замеченных приколов: 
  * не удалось создать образы, при выполненом terraform destroy, т.к. правило разрешающее ssh было им прибито

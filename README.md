@@ -32,7 +32,6 @@ db_internal_ip = [
     10.156.0.54
 ]
 ```
-
 Результат развёртывания:
 ```
 app.host                   : ok=9    changed=7    unreachable=0    failed=0

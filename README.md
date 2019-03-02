@@ -1,6 +1,43 @@
 # dimoonster_infra
 dimoonster Infra repository
 
+# ДЗ 9
+
+packer создал образа:
+```sh
+--> googlecompute: A disk image was created: reddit-app-1549575034
+--> googlecompute: A disk image was created: reddit-db-1549575485
+```
+
+Произведён запуск с этими образами:
+в terraform.tfvars добавлено:
+```
+app_disk_image = "reddit-app-1549575034"
+db_disk_image = "reddit-db-1549575485"
+```
+
+Результат сборки:
+```
+Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+app_external_ip = [
+    35.246.128.233
+]
+db_external_ip = [
+    35.234.98.24
+]
+db_internal_ip = [
+    10.156.0.54
+]
+```
+Результат развёртывания:
+```
+app.host                   : ok=9    changed=7    unreachable=0    failed=0
+mongodb.host               : ok=3    changed=2    unreachable=0    failed=0
+```
+
 # ДЗ 8
 
 Написал небольшой скриптик на perl, который возвращает динамически сгенерённый json для ansible

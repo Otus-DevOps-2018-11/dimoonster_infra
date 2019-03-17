@@ -3,7 +3,7 @@
 - name: Identify enviroment
   debug:
     msg: "This is in {{ env }} enviroment!!"
-    
+
 - name: Add unit file for Puma
   copy:
     src: puma.service

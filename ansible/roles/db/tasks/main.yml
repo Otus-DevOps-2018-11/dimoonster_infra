@@ -1,0 +1,11 @@
+---
+- name: Identify enviroment
+  debug:
+    msg: "This is in {{ env }} enviroment!!"
+
+- name: Change mongo config file
+  template:
+    src: templates/mongod.conf.j2
+    dest: /etc/mongod.conf
+    mode: 0644
+  notify: restart mongod

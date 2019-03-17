@@ -6,3 +6,4 @@ packer/variables.json
 .terraform/
 .terraform.tfstate.lock.info
 *.retry
+ansible/roles/jdauphant.nginx

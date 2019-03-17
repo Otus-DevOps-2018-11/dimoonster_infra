@@ -1,6 +1,17 @@
 # dimoonster_infra
 dimoonster Infra repository
 
+# ДЗ 10
+
+- созданы роли для серверов app и db
+- заметка: при запуске не забывать обновлять ip inventory
+- разделение на окружения. каталоги prod/stage в enviroments
+- приведён в порядок каталог ansible
+- добавлена роль nginx-proxy для app
+
+
+
+
 # ДЗ 9
 
 packer создал образа:

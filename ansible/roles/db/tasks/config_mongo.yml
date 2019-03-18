@@ -1,11 +1,4 @@
 ---
-- name: Identify enviroment
-  debug:
-    msg: "This is in {{ env }} enviroment!!"
-
-- include: install_mongo.yml
-- include: config_mongo.yml
-
 - name: Change mongo config file
   template:
     src: templates/mongod.conf.j2
